@@ -24,9 +24,9 @@
       </el-form-item>
       <el-form-item label="Status" prop="status" required>
         <el-select v-model="form.status" placeholder="Status" clearable>
-          <el-option label="Todo" value="Todo" />
-          <el-option label="In Progress" value="In Progress" />
-          <el-option label="Completed" value="Completed" />
+          <el-option label="Todo" :value="eTaskStatus.todo" />
+          <el-option label="In Progress" :value="eTaskStatus.inProgress" />
+          <el-option label="Completed" :value="eTaskStatus.completed"/>
         </el-select>
       </el-form-item>
       <div class="flex justify-end gap-2 mt-4">
@@ -42,6 +42,7 @@
 import { defineProps, defineEmits } from 'vue';
 import type { ITasks } from '../interfaces/ITasks';
 import { useEditTaskDialog } from '../composables/useEditTaskDailog';
+import { eTaskStatus } from '../enums/eTaskStatus';
 
 const props = defineProps<{
   visible: boolean;

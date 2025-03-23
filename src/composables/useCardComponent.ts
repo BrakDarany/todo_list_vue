@@ -23,11 +23,22 @@ export function useCardComponent(task: ITasks, taskIndex: number) {
     store.dispatch("updateTaskAction", updatedTask);
     closeEditDialog();
   };
-
+  const getPriorityColor = (priority: string) => {
+    console.log(priority);
+    switch (priority) {
+      case "High":
+        return "text-red-500";
+      case "Medium":
+        return "text-orange-500";
+      case "Low":
+        return "text-green-500";
+    }
+  };
   return {
     editTask,
     editDialogVisible,
     deleteDialog,
+    getPriorityColor,
     openEditDialog,
     closeEditDialog,
     deleteTask,

@@ -25,6 +25,10 @@
                 </div> 
             </el-tab-pane> 
         </el-tabs> 
+        <AddTaskDailog
+            :visible="addDailogVisible"
+            @close="closeAddDialog"
+        />
     </div>
 </template> 
 <script lang="ts" setup> 
@@ -33,6 +37,8 @@ import { useTabBarComponent } from '../composables/useTabBarComponent';
 const { 
     activeTab, 
     tabName,
+    addDailogVisible,
+    closeAddDialog,
     getTasksByTab,
     openAddDialog, 
 } = useTabBarComponent(); 

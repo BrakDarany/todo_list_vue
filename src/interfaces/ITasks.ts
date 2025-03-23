@@ -1,7 +1,10 @@
+import type { eTaskPriority } from "../enums/eTaskPriority";
+import type { eTaskStatus } from "../enums/eTaskStatus";
+
 export interface ITasks {
     id: number;
     title: string;
-    priority: 'Low' | 'Medium' | 'High';
+    priority: eTaskPriority;
     deadline: string;
-    status: 'Todo' | 'In Progress' | 'Completed';
+    status: eTaskStatus;
 }

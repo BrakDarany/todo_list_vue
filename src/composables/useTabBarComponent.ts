@@ -1,6 +1,7 @@
 import { computed, ref } from "vue";
 import store from "../store";
 import type { ITasks } from "../interfaces/ITasks";
+import { eTaskStatus } from "../enums/eTaskStatus";
 
 export function useTabBarComponent() {
   const tabName = ref([
@@ -37,13 +38,13 @@ export function useTabBarComponent() {
   const getTasksByTab = (tabName: string) => {
     switch (tabName) {
       case "todo":
-        return tasks.value.filter((task: ITasks) => task.status === "Todo");
+        return tasks.value.filter((task: ITasks) => task.status === eTaskStatus.todo);
 
       case "inProgress":
-        return tasks.value.filter((task: ITasks) => task.status === "In Progress");
+        return tasks.value.filter((task: ITasks) => task.status === eTaskStatus.inProgress);
 
       case "completed":
-        return tasks.value.filter((task: ITasks) => task.status === "Completed");
+        return tasks.value.filter((task: ITasks) => task.status === eTaskStatus.completed);
     }
   }
 
