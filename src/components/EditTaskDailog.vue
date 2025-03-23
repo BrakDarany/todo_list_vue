@@ -26,7 +26,7 @@
         <el-select v-model="form.status" placeholder="Status" clearable>
           <el-option label="Todo" value="Todo" />
           <el-option label="In Progress" value="In Progress" />
-          <el-option label="Complete" value="Complete" />
+          <el-option label="Completed" value="Completed" />
         </el-select>
       </el-form-item>
       <div class="flex justify-end gap-2 mt-4">

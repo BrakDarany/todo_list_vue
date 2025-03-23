@@ -3,7 +3,13 @@ import store from "../store";
 import type { ITasks } from "../interfaces/ITasks";
 
 export function useTabBarComponent() {
-  const activeTab = ref("Todo");
+  const tabName = ref([
+    { id: 1, label: "Todo", name: "todo" },
+    { id: 2, label: "In Progress", name: "inProgress" },
+    { id: 3, label: "Completed", name: "completed" },
+  ]);
+
+  const activeTab = ref(tabName.value[0].name);
   const addDailogVisible = ref(false);
   const openAddDialog = () => {
     addDailogVisible.value = true;
@@ -28,22 +34,25 @@ export function useTabBarComponent() {
   };
   const tasks = computed(() => store.state.tasks);
 
-  const todoTasks = computed(() =>
-    tasks.value.filter((task: ITasks) => task.status === "Todo")
-  );
-  const inProgressTasks = computed(() =>
-    tasks.value.filter((task: ITasks) => task.status === "In Progress")
-  );
-  const completedTasks = computed(() =>
-    tasks.value.filter((task: ITasks) => task.status === "Completed")
-  );
+  const getTasksByTab = (tabName: string) => {
+    switch (tabName) {
+      case "todo":
+        return tasks.value.filter((task: ITasks) => task.status === "Todo");
+
+      case "inProgress":
+        return tasks.value.filter((task: ITasks) => task.status === "In Progress");
+
+      case "completed":
+        return tasks.value.filter((task: ITasks) => task.status === "Completed");
+    }
+  }
+
   return {
     activeTab,
-    todoTasks,
-    inProgressTasks,
-    completedTasks,
     addDailogVisible,
     formModel,
+    tabName,
+    getTasksByTab,
     closeAddDialog,
     openAddDialog,
   };
